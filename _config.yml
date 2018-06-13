@@ -33,7 +33,7 @@ plugins:
 header_pages:
   - projects.md
 
-destination: ./docs
+destination: ./dist
 
 #show_excerpts: true
 
