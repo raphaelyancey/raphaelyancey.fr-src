@@ -2,7 +2,6 @@
 git status
 
 build() {
-  git commit -am
   jekyll build
   cd dist
   git add -A
