@@ -6,6 +6,10 @@ categories: [ en ]
 tags: [ programming, python ]
 ---
 
+[![django 2.0.5](https://img.shields.io/badge/django-2.0.5-blue.svg)](https://github.com/django/django/tree/2.0.5)
+[![django-allauth 0.36.0](https://img.shields.io/badge/django--allauth-0.36.0-blue.svg)](https://github.com/pennersr/django-allauth/tree/0.36.0)
+[![django-oauth-toolkit 1.1.2](https://img.shields.io/badge/django--oauth--toolkit-1.1.2-blue.svg)](https://github.com/jazzband/django-oauth-toolkit/tree/1.1.2)
+
 ## Context
 
 #### In the process of renewing the [Ircam Forum](http://forumnet.ircam.fr) website, we — Ircam *Research/Creation Interfaces* and *Web* departments — are setting up a unified Ircam authentication server.
