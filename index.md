@@ -5,7 +5,7 @@
 layout: home
 ---
 
-<div style="display: flex; margin-bottom: 30px;">
+<div style="display: flex; margin-bottom: 30px;" id="introduction">
     <div>
         <img src="/assets/img/me.jpg" alt="Raphaël Yancey" style="width: 200px; border-radius: 2px;">
     </div>
