@@ -264,11 +264,11 @@ a {
 
 span.caption {
   display: block;
-  text-align: center;
+  //text-align: center;
   color: grey;
   font-size: $base-font-size*0.9;
   font-style: italic;
-  margin-top: $spacing-unit*0.2;
+  margin-top: $spacing-unit*0.1;
 }
 
 * {

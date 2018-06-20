@@ -1,5 +1,4 @@
 #!/usr/bin/env bash
-git status
 
 build() {
   jekyll build
