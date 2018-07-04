@@ -1,6 +1,7 @@
 ---
 layout: post
 title:  "Akai MPC 1000 tact switch replacement"
+description: "TL;DR The ALPS SKHHAKA010 is a great replacement for the original switches."
 date:   2017-01-18 18:07:51 +0200
 categories: [ en ]
 tags: [ electronics, music ]

@@ -16,7 +16,7 @@
 title: Raphaël Yancey
 email: hello@raphaelyancey.fr
 description: >- # this means to ignore newlines until "baseurl:"
-  Developer, designer, hacker, musician.
+  Posts and projects involving programming, electronics, music and other topics.
 baseurl: "" # the subpath of your site, e.g. /blog
 url: "https://raphaelyancey.fr" # the base hostname & protocol for your site, e.g. http://example.com
 twitter_username: raphaelyancey
@@ -24,11 +24,19 @@ github_username:  raphaelyancey
 pinterest_username: raphaelyancey
 behance_username: raphaelyancey
 
+defaults:
+  -
+    scope:
+      path: "*"
+    values:
+      image: "/assets/img/bg.jpg"
+
 # Build settings
 markdown: kramdown
 theme: minima
 plugins:
   - jekyll-feed
+  - jekyll-seo-tag
 
 header_pages:
   - projects.md

@@ -1,6 +1,7 @@
 ---
 layout: post
 title:  "Display Internet radio station name with mpd/mpc"
+description: "A little hack to pass metadata into mpd/mpc streams."
 date:   2016-10-05 18:07:51 +0200
 categories: [ en ]
 tags: [ linux, programming, python ]

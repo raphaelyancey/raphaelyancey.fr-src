@@ -1,6 +1,7 @@
 ---
 layout: post
 title:  "Treasure hunt music collaboration"
+description: "A long-distance music collaboration involving mystery, old tapes, pirate radio and calls to an unknown phone number."
 date:   2017-04-26 18:07:51 +0200
 categories: [ en ]
 tags: [ music, hardware ]

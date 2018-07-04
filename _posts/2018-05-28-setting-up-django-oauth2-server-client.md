@@ -1,6 +1,7 @@
 ---
 layout: post
 title:  "Setting up a Django OAuth2 server & client"
+description: "A tutorial for setting up a Django OAuth2 server and its first (also Django) client."
 date:   2018-05-28 18:07:51 +0200
 categories: [ en ]
 tags: [ programming, python ]
