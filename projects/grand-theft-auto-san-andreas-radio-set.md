@@ -3,6 +3,7 @@ layout: page
 title:  "GTA: San Andreas radio set"
 categories: [ fr ]
 tags: [ music, max, video ]
+image: https://i.imgur.com/PizWbjy.jpg
 published: true
 ---
 
