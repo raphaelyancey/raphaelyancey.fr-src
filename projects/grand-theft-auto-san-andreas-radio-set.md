@@ -3,18 +3,19 @@ layout: page
 title:  "GTA: San Andreas radio set"
 categories: [ fr ]
 tags: [ music, max, video ]
-published: false
+published: true
 ---
+
+# Did you ever dream about wandering through the radio stations like you really were in San Andreas?
 
 **As seen on**
 - [Official Raspberry Pi Blog](https://www.raspberrypi.org/blog/grand-theft-auto-radio/)
 - [Hackster.io Blog](https://blog.hackster.io/this-radio-plays-exclusively-grand-theft-auto-stations-433db281319f)
 
-**Want to make you own?** [Follow the tutorial]() (coming soon).
+**Want to make you own?** Step-by-step tutorial coming soon!
+<!-- **Want to order one?** [Contact me](mailto:hello@raphaelyancey.fr)!   -->
 
-#### Ever dream about wandering through the radio stations like you really were in San Andreas?
-
-![GTA: San Andreas radio set](https://i.imgur.com/mQQBG8J.jpg)
+![GTA: San Andreas radio set](https://i.imgur.com/PizWbjy.jpg)
 
 ***Grand Theft Auto* soundtrack is well known for its high quality selection and funny interludes.** *Rockstar* did a great job at crafting the radio stations of the game, and you can even buy *Vice City*'s and *San Andreas*'s as CD box sets!
 
@@ -24,11 +25,14 @@ The main idea was to be able to scroll the frequency pot and move through the vi
 
 Let's do this!
 
+
+<iframe width="800" height="450" src="https://www.youtube-nocookie.com/embed/fqHrg4MlmFQ?rel=0" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+
 ## 1. Hardware platform
 
 I'd have gladly used an Arduino-like for this kind of portable, embedded project: it's less prone to fail because it's a much simpler architecture than SBCs (Single Board Computers).
 
-![Raspberry Pi 3](https://i.imgur.com/rXDuyky.jpg)
+![Raspberry Pi 3](https://i.imgur.com/fbkyEHF.jpg)
 
 But to play tens of files at the same time requires some guts so I settled on the **Raspberry Pi** single-board computer. Moreover, I already used it on several projects and am comfortable with it. Python would be the language of choice because I was in the mood. Do I need another reason? 🤔
 
@@ -46,7 +50,7 @@ I choose to use a **Raspberry Pi 3** because the 2B was bottlenecking the audio 
 
 ## 3. High-level rotary encoders interface (meet [pyKY040](https://github.com/raphaelyancey/pyKY040))
 
-![KY040 rotary encoders](https://i.imgur.com/xtY9Jx2.png)
+![KY040 rotary encoders](https://i.imgur.com/Ou4ZXzp.png)
 
 The best Python library I found at the time for the KY040 rotary encoders I'm using was [KY040](https://github.com/martinohanlon/KY040) but I didn't quite fit my needs and I wanted to take a try on making my first real Python module, so I wrote [pyKY040](https://github.com/raphaelyancey/pyKY040).
 
@@ -129,7 +133,7 @@ When this example is applied to `CHANNEL n-1`, it overlaps with `CHANNEL n` and 
 
 In pseudo-code, it looks like this:
 ```
-when vfreq changes
+when vfreq changes (i.e. the encoder has been turned)
     -> get the volumes to apply to each audio channel
     [
         -> get the volume for each channel
@@ -146,4 +150,45 @@ when vfreq changes
 
 ## 5. Hacking the radio case
 
+The original radio is my grandpa's *Optalix TO100*. Hard to find outside France I guess. At [€20-ish](https://www.ebay.fr/sch/i.html?_from=R40&_trksid=m570.l1313&_nkw=Optalix+TO100&_sacat=0), it's a nice vintage & compact radio set that you can bring in your bag.
+
+### Encoders
+
+Encoders would fit just enough for the case to be closed, but with the jumper wires it would be too big. So **I had to remove the original Dupont plastic endings and replace it with heat-shrinkable sheath to be able to bend it**.
+
+![Custom jumper wires with sheath](https://i.imgur.com/5QgL6eB.jpg)
+
+![An encoder with its wires and hot glue](https://i.imgur.com/ua2CQqt.jpg)
+
+The encoders on the modules I bought were not threaded so I had to improvise something with hot glue and foam cardboard to attach it to the case. Hot glue to the rescue, as always.
+
+![An encoder installed in the case](https://i.imgur.com/J5I1OwW.jpg)
+
+![The two encoders installed in the case](https://i.imgur.com/zUIxCd3.jpg)
+
+### Raspberry Pi
+
+**I deported the power socket to the case instead of plugging it directly into the Pi**, allowing me to set the Pi as I wanted in the case without having to worry about having to expose the socket to one of the case sides.
+
+![The positive wire soldered on the PP2 pad](https://i.imgur.com/VvuUuPV.jpg)
+
+![The negative wire soldered on the grounded socket](https://i.imgur.com/UWCdr9y.jpg)
+
+I used a **male micro-USB to female micro-USB panel mount**, but to gain some more space I stripped the wire and soldered it directly to the Pi: the (+) to the PP2 pad and the (-) to the socket itself which is grounded (or PP5 alternatively). Mandatory hot glue to be sure it won't move.
+
+![The case with deported power socket](https://i.imgur.com/OtKTUq0.jpg)
+
+### Speaker
+
+The speaker is the original 5W speaker from the *TO100*. It is wired to an amp which is wired to a male 3.5mm audio jack, which is plugged into a cheap USB DAC [like this one](https://rover.ebay.com/rover/1/709-53476-19255-0/1?icep_id=114&ipn=icep&toolid=20004&campid=5338343247&mpre=https%3A%2F%2Fwww.ebay.fr%2Fitm%2FAdaptater-USB-CARTE-SON-3D-5-1-AUDIO-MICRO-Virtuel-STEREO-EXTERNAL-PC-SOUND-CARD%2F153077145613%3Fhash%3Ditem23a41be00d%3Ag%3A3wUAAOSwK-ZbM1IE) (affiliate link).
+
+![Full view (speaker in)](https://i.imgur.com/QhesgDH.jpg)
+
+Breadboard is wired, ready to be closed for the eternity 👋
+
+![Full view (speaker out)](https://i.imgur.com/B482qR3.jpg)
+
+![Full view (closed)](https://i.imgur.com/nvdOS6t.jpg?1)
+
+## Thanks for reading!
 

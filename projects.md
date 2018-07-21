@@ -4,6 +4,14 @@ title: Projects
 permalink: /projects/
 ---
 
+
+
+[GTA: San Andreas radio set]({{ site.baseurl }}{% link projects/grand-theft-auto-san-andreas-radio-set.md %})
+
+(2018)
+
+---
+
 [Berceuse pour Intelligence Artificielle]({{ site.baseurl }}{% link projects/berceuse-intelligence-artificielle.md %})
 
 (2017) Une intelligence artificielle sur scène est énervée, irritée, en colère : un musicien doit trouver l'harmonie de notes qui la calmeront. Une expérimentation de spectacle mêlant informatique musicale, scénographie et performance d'artiste.
