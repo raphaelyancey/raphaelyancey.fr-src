@@ -16,7 +16,7 @@
 title: Raphaël Yancey
 email: hello@raphaelyancey.fr
 description: >- # this means to ignore newlines until "baseurl:"
-  Posts and projects involving programming, electronics, music and other topics.
+  Programming, electronics, music and other
 baseurl: "" # the subpath of your site, e.g. /blog
 url: "https://raphaelyancey.fr" # the base hostname & protocol for your site, e.g. http://example.com
 twitter_username: raphaelyancey
