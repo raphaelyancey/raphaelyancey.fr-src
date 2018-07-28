@@ -10,7 +10,8 @@ published: true
 # Did you ever dream about wandering through the radio stations like you really were in San Andreas?
 
 **As seen on**
-- [Official Raspberry Pi Blog](https://www.raspberrypi.org/blog/grand-theft-auto-radio/)
+- [Raspberry Pi Blog](https://www.raspberrypi.org/blog/grand-theft-auto-radio/) (official)
+- [Hackaday.com Blog](https://hackaday.com/2018/07/25/gta-san-andreas-radio-earns-six-star-wanted-level/)
 - [Hackster.io Blog](https://blog.hackster.io/this-radio-plays-exclusively-grand-theft-auto-stations-433db281319f)
 
 **Want to make you own?** Step-by-step tutorial coming soon!
