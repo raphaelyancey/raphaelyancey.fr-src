@@ -15,7 +15,13 @@
 
     {%- include footer.html -%}
 
-  </body>
+  <script src="https://cdn.jsdelivr.net/npm/anchor-js@4.1.1/anchor.min.js" integrity="sha256-pB/deHc9CGfFpJRjC43imB29Rse8tak+5eXqntO94ck=" crossorigin="anonymous"></script>
+  
+  <script type="text/javascript">
+    document.addEventListener("DOMContentLoaded", function(event) {
+      anchors.add();
+    });
+  </script>
 
   <script type="text/javascript">
     var _paq = _paq || [];
@@ -33,5 +39,7 @@
   <noscript>
     <p><img src="//s.raphaelyancey.fr/js/?idsite=2&amp;rec=1" style="border:0;" alt=""></p>
   </noscript>
+
+  </body>
 
 </html>
