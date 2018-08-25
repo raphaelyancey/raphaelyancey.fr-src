@@ -16,6 +16,7 @@ It uses [Virtual_FM_Band](https://github.com/raphaelyancey/Virtual_FM_Band) and 
 ## Bill Of Materials (~$45)
 
 - 1 * [Raspberry Pi 3](https://www.ebay.fr/itm/Raspberry-Pi-3-Model-B-Plus-1-4GHz-Quad-Core-64Bit-1GB-RAM-2018-Model/261698200759) (might work on other SBC but not tested)
+- 1 * 8GB (or more) [micro-SD card](https://www.raspberrypi.org/documentation/installation/sd-cards.md)
 - 1 * Vintage radio (at least 10.5 x 18.5 x 5.5mm — keep the speaker!)
 - 1 * [Small breadboard](https://www.ebay.com/itm/5pcs-Mini-Solderless-Prototype-Breadboard-SYB-170-170-Tie-points-For-Arduino-/253218642521)
 - 2 * [KY040 encoder](https://www.ebay.com/itm/2pcs-KY-040-Rotary-Encoder-Module-for-Arduino-AVR-PIC-NEW/171906808593)
@@ -57,7 +58,7 @@ It uses [Virtual_FM_Band](https://github.com/raphaelyancey/Virtual_FM_Band) and 
   - Get the **audio jack** out of its plastic housing (we won't use it — just keep the metallic part)
   - With the optional help of a multimeter, locate the *tip* (left audio channel), *ring* (right audio channel) and *sleeve* (ground) parts of the audio jack ([schema](https://robrobinette.com/images/Audio/TRS_Pinout_4_Wire.jpg))
   - **Solder wires** to each part
-  - **Isolate it** and make it sturdy with electrical tape or sheath. You can use the plastic housing if you have space in your case.
+  - **Isolate it** and make it sturdy with electrical tape or sheath
 
 - Speaker
   - **Solder** two wires to the speaker positive and negative poles
@@ -80,23 +81,65 @@ Here, **it will all depend on the shape of your radio case**. Just make sure you
 
 **Optional but very useful:** cut a hole for accessing the Pi micro-SD card without having to open the case.
 
-## 5. Position the encoders, the Pi and the breadboard
+## 5. Install everything
 
 - **Install the encoders** in their holes and screw the bolts
 - If you can, **screw the Pi to the case** so it won't move. Else, find some magic trick in your maker head!
 - **Stick the breadboard** to the case
-- Remove the **USB DAC** plastic case to gain some space, and plug it into the Pi
+- **Screw the panel mount** to the case
 
 **At this point**, you shouldn't any moving parts in the radio case except the speaker assembly: everything is either screwed or glued to the case.
 
-## 6. Wire everything
+## 6. Wire it up
 
 - Follow the following wiring schema for all the DuPont wirings involving the **breadboard**
 
+![Wiring schematics](https://i.imgur.com/BceGzkV.png)
+
+- Remove the **USB DAC** plastic case to gain some space, and plug it into the Pi
 - Plug the **audio jack** into the **USB DAC**
 
+**The hardware part is done**, congratulations 🎉
+
 # Software
+
 ## Flash Raspbian to a SD card
+
+- Get the [latest **Raspbian image**](https://downloads.raspberrypi.org/raspbian_latest)
+
+> **Why not Raspbian Lite?** Because headless WiFi configuration seems buggy for now. However if you have access to an Ethernet cable, you can choose Raspbian Lite and skip the *wpa_supplicant.conf* part below.
+
+- **Flash it** to the micro-SD card with e.g. [Etcher](https://etcher.io/)
+- Once flashed, remove it and put it back in your computer to be able to access the */boot* partition
+- In a terminal, `cd` into the micro-SD card and type the following commands
+
+```bash
+touch ssh # To enable ssh at first boot
+```
+```bash
+nano ./wpa_supplicant.conf # WiFi configuration at first boot
+```
+
+And paste the following:
+```
+country=YOUR_COUNTRY_ISO_CODE
+ctrl_interface=DIR=/var/run/wpa_supplicant GROUP=netdev
+update_config=1
+network={
+    ssid="YOUR_SSID"
+    scan_ssid=1
+    psk="YOUR_SSID_KEY"
+    key_mgmt=WPA-PSK
+}
+```
+
+- **Eject/unmount** the micro-SD card and put it in the Raspberry Pi
+- **Power on** the Raspberry Pi
+
+**You should now (after ~30s) be able to `ssh` into your Raspberry Pi:** `ssh pi@raspberrypi.local` (the password is *raspberry*).
+
+I strongly suggest you change the password of `pi` user or enable key file authentication at this point. The Pi won't be powered a lot but it costs nothing and prevent any harm!
+
 ## Install Virtual_FM_Band
 ## Install pyKY040
 ## Prepare your soundtrack files
