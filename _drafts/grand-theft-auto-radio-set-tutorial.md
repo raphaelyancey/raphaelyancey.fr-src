@@ -3,6 +3,8 @@ layout: post
 title: "Build your own GTA: San Andreas radio set"
 ---
 
+<!-- TODO: update install script URL -->
+
 *Version 1, updated on Aug 22th, 2018*
 
 By following this tutorial you'll be able to build a radio set with custom stations, in this case the *GTA: San Andreas* stations. [This is the original radio I built.]({{ site.baseurl }}{% link projects/grand-theft-auto-san-andreas-radio-set.md %})
@@ -47,6 +49,8 @@ It uses [Virtual_FM_Band](https://github.com/raphaelyancey/Virtual_FM_Band) and 
 ![Grounded socket](https://i.imgur.com/UWCdr9y.jpg)
 
 ## 3. Build the speaker assembly
+
+> Check out the [schematics below](#6-wire-it-up) to have a more general view of the wiring
 
 - **Cut** and **strip** five small length wires: two for *amp <> speaker* and three for *Pi <> amp*
 
@@ -94,7 +98,7 @@ Here, **it will all depend on the shape of your radio case**. Just make sure you
 
 - Follow the following wiring schema for all the DuPont wirings involving the **breadboard**
 
-![Wiring schematics](https://i.imgur.com/BceGzkV.png)
+![Wiring schematics](https://i.imgur.com/XvqQmSJ.png)
 
 - Remove the **USB DAC** plastic case to gain some space, and plug it into the Pi
 - Plug the **audio jack** into the **USB DAC**
@@ -115,12 +119,10 @@ Here, **it will all depend on the shape of your radio case**. Just make sure you
 
 ```bash
 touch ssh # To enable ssh at first boot
-```
-```bash
-nano ./wpa_supplicant.conf # WiFi configuration at first boot
+nano wpa_supplicant.conf # WiFi configuration at first boot
 ```
 
-And paste the following:
+Paste the following (edit with your own informations):
 ```
 country=YOUR_COUNTRY_ISO_CODE
 ctrl_interface=DIR=/var/run/wpa_supplicant GROUP=netdev
@@ -138,9 +140,55 @@ network={
 
 **You should now (after ~30s) be able to `ssh` into your Raspberry Pi:** `ssh pi@raspberrypi.local` (the password is *raspberry*).
 
-I strongly suggest you change the password of `pi` user or enable key file authentication at this point. The Pi won't be powered a lot but it costs nothing and prevent any harm!
+> I strongly suggest you change the password of `pi` user or enable key file authentication at this point. The Pi won't be powered a lot but it costs nothing and prevent any harm!
 
-## Install Virtual_FM_Band
-## Install pyKY040
-## Prepare your soundtrack files
-## Make it run on boot
+## Install the software
+
+- `ssh` into your Raspberry Pi
+- **Run** the following commands:
+```bash
+raspi-config --expand-rootfs # Makes the root partition fill up the micro-SD card
+wget https://raw.githubusercontent.com/raphaelyancey/Virtual_FM_Band/ftr_easy-wrapper/install.sh | bash # Good practice is to read the script before running it!
+```
+
+The [install script](https://raw.githubusercontent.com/raphaelyancey/Virtual_FM_Band/ftr_easy-wrapper/install.sh) installs packages, clone the virtual radio software, installs required Python modules and creates a cron to run the virtual radio at boot.
+
+## Prepare and transfer the audio files
+
+The way it's written at the moment, **the virtual radio software consider each file to be a whole station**. But you probably have multiple files into a folder for each station of your soundtrack, so we'll have to concate the files into one file.
+
+> The files must be mono-channel MP3s at 44.1k rate
+
+> You might have to use some bash-fu to avoid typing the command for each file, take a look at `find` and `xargs`!
+
+**Audio manipulations** can be done with the `sox` swiss-army knife:
+- For each file, run `sox file.ext -c 1 -r 44100 output/file.mp3`(this will convert to MP3, reduce to one channel and convert to 44.1k if not already)
+- Considering you have an output folder per station, concatenate all the files into one with `sox file1.mp3 file2.mp3 file3.mp3 [...] STATION_NAME.mp3`
+
+At this point, **you should have one file per virtual station**. We can now transfer them to the Pi.
+
+- **Transfer** each station to the Pi with `scp STATION_NAME.mp3 pi@raspberrypi.local:/home/pi/audio/`
+- To choose **the order in which the stations will be played** next to each other, `ssh` into your Pi and rename the stations following the **alphabetical order** (e.g. prefix them with numbers to choose the order)
+
+> The virtual radio software reads the audio folder in alphabetical order and assigns virtual frequencies by following this order.
+
+## All done 👏
+
+Run `sudo reboot` from your Pi and **it should start after a few seconds** depending on the amount of files/stations that you have transfered.
+
+Before unplugging the Pi power cord, run `ssh pi@raspberrypi.local sudo shutdown -h now` or you might corrupt the SD card. For the bad guys over here, if you don't plan to do it anyway, at least unplug it when the Pi green LED isn't bliking — meaning the micro-SD card isn't being wrote on, meaning there is less chance to corrupt it.
+
+You can also [make Raspbian read-only](https://www.raspberrypi.org/blog/adafruits-read-only/), which I'll try soon and maybe add to the installation script later on.
+
+If everything runs perfectly, **I strongly suggest you to backup your micro-SD** card in an image to be able to restore it in case it gets corrupted.
+
+---
+
+### Troubleshooting
+
+If the radio doesn't start on boot:
+- Check that the script is launched with `ps aux | grep python`
+- See that *pulseaudio* is launched with `ps aux | grep pulse`
+- Try to launch the script yourself and see if it prints errors with `python2 /home/pi/app/src/main.py`
+
+I'd be happy to help either on Twitter [@raphaelyancey](https://twitter.com/raphaelyancey) or on Github if you think the issue is related to either [Virtual_FM_Band](https://github.com/raphaelyancey/Virtual_FM_Band) or [pyKY040](https://github.com/raphaelyancey/pyKY040).
