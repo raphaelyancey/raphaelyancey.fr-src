@@ -154,11 +154,7 @@ network={
 ## Install the software
 
 - `ssh` into your Raspberry Pi
-- **Run** the following commands:
-```bash
-raspi-config --expand-rootfs # Makes the root partition fill up the micro-SD card
-wget https://raw.githubusercontent.com/raphaelyancey/Virtual_FM_Band/ftr_easy-wrapper/install.sh | bash # Good practice is to read the script before running it!
-```
+- **Run** the install script: `curl https://raw.githubusercontent.com/raphaelyancey/Virtual_FM_Band/master/install.sh | bash`
 
 The [install script](https://raw.githubusercontent.com/raphaelyancey/Virtual_FM_Band/master/install.sh) installs packages, clone the virtual radio software, installs required Python modules and creates a cron to run the virtual radio at boot.
 
