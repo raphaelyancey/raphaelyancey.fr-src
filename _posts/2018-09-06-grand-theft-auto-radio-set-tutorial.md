@@ -121,10 +121,7 @@ Here, **it will all depend on the shape of your radio case**. Just make sure you
 
 ## Flash Raspbian to a SD card
 
-- Get the [latest **Raspbian image**](https://downloads.raspberrypi.org/raspbian_latest)
-
-> **Why not Raspbian Lite?** Because headless WiFi configuration seems buggy for now. However if you have access to an Ethernet cable, you can choose Raspbian Lite and skip the *wpa_supplicant.conf* part below.
-
+- Get the [latest **Raspbian Lite image**](https://downloads.raspberrypi.org/raspbian_lite_latest)
 - **Flash it** to the micro-SD card with e.g. [Etcher](https://etcher.io/)
 - Once flashed, remove it and put it back in your computer to be able to access the */boot* partition
 - In a terminal, `cd` into the micro-SD card and type the following commands
