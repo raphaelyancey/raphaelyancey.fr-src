@@ -5,8 +5,6 @@ title: "Build your own GTA: San Andreas radio set"
 
 <!-- TODO: update install script URL -->
 
-*Version 1, updated on Aug 22th, 2018*
-
 By following this tutorial you'll be able to build a radio set with custom stations, in this case the *GTA: San Andreas* stations. [This is the original radio I built.]({{ site.baseurl }}{% link projects/grand-theft-auto-san-andreas-radio-set.md %})
 
 ![The GTA:SA radio](https://i.imgur.com/QhesgDH.jpg)
@@ -28,6 +26,11 @@ It uses [Virtual_FM_Band](https://github.com/raphaelyancey/Virtual_FM_Band) and 
 - 1 * [Micro-USB panel mount](https://www.ebay.fr/itm/Micro-USB-2-0-Male-to-Female-connector-Adapter-Cable-30cm-With-Panel-Mount-Hole/391957934957) (male <> female)
 - 18 * [DuPont prototyping wires](https://www.ebay.fr/itm/40-PCs-Dupont-Jumper-Wire-m-m-m-f-f-f-cable-pi-pic-pain-pour-Arduino/323094330106) (male <> female)
 - 1 * [Male 1/8" TRS audio jack](https://www.ebay.fr/itm/10pcs-3-5mm-1-8-Audio-Male-Plug-Jack-Adapter-Connector-DIY-Earphone-SpeakerFE/232857668261)
+
+And optionally for the tuning status LED:
+
+- 1 * Red LED
+- 1 * 100 Ω resistor
 
 ... and some screws, bolts, wire, multimeter, spare DuPont headers & basic soldering tools that I'm guessing you already have. Also, a glue gun will be useful.
 
@@ -76,7 +79,14 @@ It uses [Virtual_FM_Band](https://github.com/raphaelyancey/Virtual_FM_Band) and 
 
 **You now have the full speaker assembly** with an audio jack and two female DuPont wires ready to be plugged.
 
-## 4. Prepare the case
+## 4. Build the status LED (optional)
+
+- **Cut** two DuPont wires and keep the *female* part of each and **strip** the other part
+- **Solder** one of the wires to the resistor
+- **Solder** the resistor to the longest pin of the LED
+- **Solder** the other wire to the other pin of the LED
+
+## 5. Prepare the case
 
 Here, **it will all depend on the shape of your radio case**. Just make sure you have enough space for the whole stuff by trying different layouts. When you think you're ready, then...
 
@@ -85,7 +95,7 @@ Here, **it will all depend on the shape of your radio case**. Just make sure you
 
 **Optional but very useful:** cut a hole for accessing the Pi micro-SD card without having to open the case.
 
-## 5. Install everything
+## 6. Install everything
 
 - **Install the encoders** in their holes and screw the bolts
 - If you can, **screw the Pi to the case** so it won't move. Else, find some magic trick in your maker head!
@@ -94,11 +104,13 @@ Here, **it will all depend on the shape of your radio case**. Just make sure you
 
 **At this point**, you shouldn't any moving parts in the radio case except the speaker assembly: everything is either screwed or glued to the case.
 
-## 6. Wire it up
+## 7. Wire it up
 
-- Follow the following wiring schema for all the DuPont wirings involving the **breadboard**
+- Follow the following wiring schema and if needed, get help from [pinout.xyz](https://pinout.xyz) for identifying the pin numbers (BCM numbering is used across the project)
 
 ![Wiring schematics](https://i.imgur.com/XvqQmSJ.png)
+
+- If you're using the status LED, **plug** the DuPont wire soldered to the resistor to the [BCM 25 pin](https://pinout.xyz/pinout/pin22_gpio25#), and the other wire to a ground pin (either on the Pi or on the grounded rail of the breadboard)
 
 - Remove the **USB DAC** plastic case to gain some space, and plug it into the Pi
 - Plug the **audio jack** into the **USB DAC**
@@ -151,7 +163,7 @@ raspi-config --expand-rootfs # Makes the root partition fill up the micro-SD car
 wget https://raw.githubusercontent.com/raphaelyancey/Virtual_FM_Band/ftr_easy-wrapper/install.sh | bash # Good practice is to read the script before running it!
 ```
 
-The [install script](https://raw.githubusercontent.com/raphaelyancey/Virtual_FM_Band/ftr_easy-wrapper/install.sh) installs packages, clone the virtual radio software, installs required Python modules and creates a cron to run the virtual radio at boot.
+The [install script](https://raw.githubusercontent.com/raphaelyancey/Virtual_FM_Band/master/install.sh) installs packages, clone the virtual radio software, installs required Python modules and creates a cron to run the virtual radio at boot.
 
 ## Prepare and transfer the audio files
 
@@ -192,3 +204,7 @@ If the radio doesn't start on boot:
 - Try to launch the script yourself and see if it prints errors with `python2 /home/pi/app/src/main.py`
 
 I'd be happy to help either on Twitter [@raphaelyancey](https://twitter.com/raphaelyancey) or on Github if you think the issue is related to either [Virtual_FM_Band](https://github.com/raphaelyancey/Virtual_FM_Band) or [pyKY040](https://github.com/raphaelyancey/pyKY040).
+
+---
+
+<div><small><i>Updated on 2018/09/06 — Revision 1</i></small></div>
