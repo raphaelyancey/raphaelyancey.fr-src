@@ -14,8 +14,9 @@ published: true
 - [Hackaday.com Blog](https://hackaday.com/2018/07/25/gta-san-andreas-radio-earns-six-star-wanted-level/)
 - [Hackster.io Blog](https://blog.hackster.io/this-radio-plays-exclusively-grand-theft-auto-stations-433db281319f)
 
-**Want to make you own?** Step-by-step tutorial coming soon!
-<!-- **Want to order one?** [Contact me](mailto:hello@raphaelyancey.fr)!   -->
+**Want to make you own?** Check out the [step-by-step tutorial]({% link _posts/2018-09-06-grand-theft-auto-radio-set-tutorial.md %})!
+
+**Want to order one?** [Contact me](mailto:{{ site.email | encode_email }})!
 
 ![GTA: San Andreas radio set](https://i.imgur.com/PizWbjy.jpg)
 

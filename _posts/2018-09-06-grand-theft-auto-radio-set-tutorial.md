@@ -1,11 +1,12 @@
 ---
 layout: post
 title: "Build your own GTA: San Andreas radio set"
+image: https://i.imgur.com/QhesgDH.jpg
 ---
 
 <!-- TODO: update install script URL -->
 
-By following this tutorial you'll be able to build a radio set with custom stations, in this case the *GTA: San Andreas* stations. [This is the original radio I built.]({{ site.baseurl }}{% link projects/grand-theft-auto-san-andreas-radio-set.md %})
+# By following this tutorial you'll be able to build your own [GTA: San Andreas radio set]({% link projects/grand-theft-auto-san-andreas-radio-set.md %})
 
 ![The GTA:SA radio](https://i.imgur.com/QhesgDH.jpg)
 
