@@ -53,7 +53,7 @@ And optionally for the tuning status LED:
 
 ## 3. Build the speaker assembly
 
-> Check out the [schematics below](#6-wire-it-up) to have a more general view of the wiring
+> Check out the [schematics below](#7-wire-it-up) to have a more general view of the wiring
 
 - **Cut** and **strip** five small length wires: two for *amp <> speaker* and three for *Pi <> amp*
 
@@ -91,7 +91,7 @@ And optionally for the tuning status LED:
 Here, **it will all depend on the shape of your radio case**. Just make sure you have enough space for the whole stuff by trying different layouts. When you think you're ready, then...
 
 - **Drill** two holes for the encoders
-- **Drill or cut** a rectangular hole for the micro-USB panel mount and two more aside it to screw it to the case
+- **Drill or cut** a rectangular hole for the micro-USB panel mount and two more holes aside it to screw it to the case
 
 **Optional but very useful:** cut a hole for accessing the Pi micro-SD card without having to open the case.
 
@@ -107,6 +107,8 @@ Here, **it will all depend on the shape of your radio case**. Just make sure you
 ## 7. Wire it up
 
 - Follow the following wiring schema and if needed, get help from [pinout.xyz](https://pinout.xyz) for identifying the pin numbers (BCM numbering is used across the project)
+
+> The amp is here represented as an IC but really is a PCB like the one I linked in the bill of materials. Also, the male audio jack is represented as... a sticker (because these parts didn't exist in Fritzing)
 
 ![Wiring schematics](https://i.imgur.com/XvqQmSJ.png)
 
