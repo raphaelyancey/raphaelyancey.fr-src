@@ -3,9 +3,11 @@
 build() {
   jekyll build
   cd dist
+  git init
+  git remote add origin git@github.com:raphaelyancey/raphaelyancey.fr.git
   git add -A
   git commit -am "Update"
-  git push origin master
+  git push --force origin master
   cd ..
 }
 
